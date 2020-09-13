@@ -1,17 +1,51 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import Parallax from 'react-springy-parallax';
+import { TitlePage, AboutMe } from './Pages';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+class App extends React.Component {
+  render() {
+    const styles = {
+      fontFamily: 'Menlo-Regular, Menlo, monospace',
+      fontSize: 14,
+      lineHeight: '10px',
+      color: 'white',
+      display: 'flex', alignItems: 'center', justifyContent: 'center'
+    }
+    return (
+      <Parallax horizontal ref="parallax" pages={3}>
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+        <Parallax.Layer offset={0} speed={1} style={{ backgroundColor: '#243B4A' }} />
+        <Parallax.Layer offset={1} speed={1} style={{ backgroundColor: '#805E73' }} />
+        <Parallax.Layer offset={2} speed={1} style={{ backgroundColor: '#87BCDE' }} />
+
+        <Parallax.Layer
+          offset={0}
+          speed={0.5}
+          style={styles}
+          onClick={() => this.refs.parallax.scrollTo(1)}>
+          <TitlePage />
+        </Parallax.Layer>
+
+        <Parallax.Layer
+          offset={1}
+          speed={-0.1}
+          style={styles}
+          onClick={() => this.refs.parallax.scrollTo(2)}>
+          <AboutMe />
+        </Parallax.Layer>
+
+        <Parallax.Layer
+          offset={2}
+          speed={0.5}
+          style={styles}
+          onClick={() => this.refs.parallax.scrollTo(0)}>
+          The end.
+              </Parallax.Layer>
+
+      </Parallax>
+    )
+  }
+}
+
+ReactDOM.render(<App />, document.querySelector('#root'))
