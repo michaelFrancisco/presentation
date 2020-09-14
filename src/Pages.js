@@ -6,34 +6,76 @@ import LazilyRender from "react-lazily-render";
 import { useTransition, animated, config } from "react-spring";
 import Style from "./Pages.css";
 
+const lmsSlides = [
+  {
+    id: 0,
+    url: "https://i.imgur.com/BvK217B.png",
+  },
+  {
+    id: 1,
+    url: "https://i.imgur.com/RNBlXri.png",
+  },
+  {
+    id: 2,
+    url: "https://i.imgur.com/q60Ma3B.jpg",
+  },
+  {
+    id: 3,
+    url: "https://i.imgur.com/RKlrnVR.png",
+  },
+];
+
+const misSlides = [
+  {
+    id: 0,
+    url: "https://i.imgur.com/UJbM5hZ.jpg",
+  },
+  {
+    id: 1,
+    url: "https://i.imgur.com/c6MitAQ.png",
+  },
+  {
+    id: 2,
+    url: "https://i.imgur.com/jrgfbfS.png",
+  },
+];
+
 const skills = [
   {
-    type: "Java",
-    level: 100,
-  },
-  {
-    type: "React",
-    level: 85,
-  },
-  {
-    type: "Javascript",
+    type: ".NET",
     level: 75,
   },
   {
-    type: "Spring",
+    type: "Web Development",
     level: 50,
   },
   {
-    type: "Docker",
+    type: "Git",
+    level: 50,
+  },
+  {
+    type: "Android",
     level: 25,
   },
   {
-    type: "HTML",
-    level: 20,
+    type: "Data Analytics",
+    level: 50,
   },
   {
-    type: "NoSQL",
-    level: 0,
+    type: "Database Management",
+    level: 75,
+  },
+  {
+    type: "Cloud Technology",
+    level: 25,
+  },
+  {
+    type: "Hardware",
+    level: 75,
+  },
+  {
+    type: "Teamwork",
+    level: 100,
   },
 ];
 
@@ -57,8 +99,15 @@ class About extends React.Component {
   render() {
     return (
       <div>
-        <h1>About Me</h1>
-        <p>I am an IT Professional with a passion for programming.</p>
+        <div className="centeredContent">
+          <h1>About Me</h1>
+          <p>
+            I am an IT Professional with a passion for programming. My hobbies
+            include Gaming, Judo and Working out. A fresh graduate with
+            outstanding grades looking for career oppurtunities in the IT
+            industry. A man of focus, commitment and sheer will.
+          </p>
+        </div>
       </div>
     );
   }
@@ -133,28 +182,9 @@ class Skills extends React.Component {
   }
 }
 
-const slides = [
-  {
-    id: 0,
-    url: "https://i.imgur.com/BvK217B.png",
-  },
-  {
-    id: 1,
-    url: "https://i.imgur.com/RNBlXri.png",
-  },
-  {
-    id: 2,
-    url: "https://i.imgur.com/J2GrqnI.png",
-  },
-  {
-    id: 3,
-    url: "https://i.imgur.com/68yBcKE.jpeg",
-  },
-];
-
 const LMS = () => {
   const [index, set] = useState(0);
-  const transitions = useTransition(slides[index], (item) => item.id, {
+  const transitions = useTransition(lmsSlides[index], (item) => item.id, {
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0 },
@@ -162,6 +192,30 @@ const LMS = () => {
   });
   useEffect(
     () => void setInterval(() => set((state) => (state + 1) % 4), 2000),
+    []
+  );
+  return transitions.map(({ item, props, key }) => (
+    <animated.div
+      key={key}
+      className="bg"
+      style={{
+        ...props,
+        backgroundImage: `url(${item.url})`,
+      }}
+    />
+  ));
+};
+
+const MIS = () => {
+  const [index, set] = useState(0);
+  const transitions = useTransition(misSlides[index], (item) => item.id, {
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+    leave: { opacity: 0 },
+    config: config.molasses,
+  });
+  useEffect(
+    () => void setInterval(() => set((state) => (state + 1) % 3), 2000),
     []
   );
   return transitions.map(({ item, props, key }) => (
@@ -199,12 +253,23 @@ class LMSDescription extends React.Component {
   }
 }
 
-class MIS extends React.Component {
+class MISDescription extends React.Component {
   render() {
     return (
-      <div>
-        <h1>About Me</h1>
-        <p>I am an IT Professional with a passion for programming. </p>
+      <div className="misPage">
+        <div className="centeredContent">
+          <Image
+            src="https://1000logos.net/wp-content/uploads/2019/03/PNP-Logo.png"
+            roundedCircle
+            className="misImage"
+          />
+          <h2>Management Information System for Novaliches Police Station 4</h2>
+          <p>
+            Manages police records such as jail visits, criminal records and
+            stolen vehicle reports. Developed using C#, MySQL and WPF with
+            Microsoft PowerBI for the dashboard. Uses the MVVM framework.
+          </p>
+        </div>
       </div>
     );
   }
@@ -214,8 +279,25 @@ class Web extends React.Component {
   render() {
     return (
       <div>
-        <h1>About Me</h1>
-        <p>I am an IT Professional with a passion for programming. </p>
+        <h1>Web Development</h1>
+        <div className="webPage">
+          <Image
+            src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582748_1280.png"
+            className="webLogo"
+          />
+          <Image
+            src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_960_720.png"
+            className="webLogo"
+          />
+          <Image
+            src="https://impact-hr.com/wp-content/uploads/2017/04/javascript_round.png"
+            className="webLogo"
+          />
+          <Image
+            src="https://miro.medium.com/max/500/1*cPh7ujRIfcHAy4kW2ADGOw.png"
+            className="webLogo"
+          />
+        </div>
       </div>
     );
   }
@@ -224,8 +306,7 @@ class ThankYou extends React.Component {
   render() {
     return (
       <div>
-        <h1>About Me</h1>
-        <p>I am an IT Professional with a passion for programming. </p>
+        <h1>Thank you!</h1>
       </div>
     );
   }
@@ -238,8 +319,9 @@ export {
   Work,
   Skills,
   LMS,
+  LMSDescription,
   MIS,
+  MISDescription,
   Web,
   ThankYou,
-  LMSDescription,
 };

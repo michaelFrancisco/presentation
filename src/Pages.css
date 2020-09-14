@@ -57,6 +57,10 @@ p {
   height: 100%;
   width: 100%;
 }
+.misImage {
+  width: 40%;
+  height: 40%;
+}
 
 .lmsPage {
   font-weight: bold;
@@ -67,6 +71,27 @@ p {
   width: 100%;
   position: relative;
   color: #1206fe;
+  font-size: larger;
+}
+.webLogo {
+  height: 100px;
+  width: 100px;
+}
+
+.webPage {
+  flex-direction: row;
+}
+
+.misPage {
+  font-weight: bold;
+  z-index: 100;
+  background-color: #2e319287;
+  display: inline;
+  height: 100%;
+  width: 100%;
+  font-size: larger;
+  position: relative;
+  color: white;
 }
 
 .centeredContent {

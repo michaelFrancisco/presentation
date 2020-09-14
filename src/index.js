@@ -10,6 +10,7 @@ import {
   LMS,
   LMSDescription,
   MIS,
+  MISDescription,
   Web,
   ThankYou,
 } from "./Pages";
@@ -82,14 +83,14 @@ class App extends React.Component {
           offset={7}
           speed={1}
           style={styles}
-          style={{ backgroundColor: "#87BCDE" }}
+          style={{ backgroundColor: "#CE6C47" }}
         />
         {/* Thank You */}
         <Parallax.Layer
           offset={8}
           speed={1}
           style={styles}
-          style={{ backgroundColor: "#87BCDE" }}
+          style={{ backgroundColor: "#4B644A" }}
         />
 
         <Parallax.Layer
@@ -149,6 +150,7 @@ class App extends React.Component {
           style={styles}
           onClick={() => this.refs.parallax.scrollTo(7)}
         >
+          <MISDescription />
           <MIS />
         </Parallax.Layer>
         <Parallax.Layer
